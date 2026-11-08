@@ -9,9 +9,12 @@ credentials are requested and no data leaves the device.**
 
 ## Data source (current, honest)
 
-The app reads the two HTML files Meta produces in its official export
-(`following.html`, `followers.html`, found under
-`connections/followers_and_following/`). It does NOT connect to Instagram,
+The app reads Meta's official export (`connections/followers_and_following/`),
+in either flavor: HTML (`following.html` + `followers.html` or numbered
+`followers_N.html` shards) or JSON (`following.json` + numbered
+`followers_N.json` shards). Shards are merged; conflicting or missing
+followers data makes derived lists unavailable instead of wrong. See
+docs/EXPORT_FORMATS.md. It does NOT connect to Instagram,
 and unfollow-style actions are links out to instagram.com, performed by the
 user there. Automatic reading of recurring scheduled-export files and any
 in-app account action depend on feasibility work that is still open

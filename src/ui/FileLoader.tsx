@@ -64,8 +64,8 @@ export function FileLoader({ title, onLoadZip, onLoadPair, error, loading }: Pro
       <p className="hint">
         מאינסטגרם: מרכז החשבונות ← המידע וההרשאות שלך ← ייצוא המידע ←{' '}
         <span dir="ltr">Followers and following</span>. אפשר לטעון את קובץ ה-ZIP של הייצוא,
-        או את שני הקבצים <span dir="ltr">following.html</span> ו-<span dir="ltr">followers.html</span>{' '}
-        מתוכו. כל העיבוד מתבצע במכשיר שלך; הנתונים לא נשלחים לשום שרת.
+        או את קבצי ה-following וה-followers מתוכו, בפורמט HTML או JSON.{' '}
+        כל העיבוד מתבצע במכשיר שלך; הנתונים לא נשלחים לשום שרת.
       </p>
       <div className="file-row">
         <PickButton id="zip-input" label="קובץ ZIP של הייצוא" file={zip} accept=".zip,application/zip" onPick={setZip} />
@@ -74,16 +74,16 @@ export function FileLoader({ title, onLoadZip, onLoadPair, error, loading }: Pro
       {!zip && (
         <>
           <div className="file-row">
-            <PickButton id="following-input" label="following.html" file={following} accept=".html,text/html" onPick={setFollowing} />
+            <PickButton id="following-input" label="following.html / following.json" file={following} accept=".html,text/html,.json,application/json" onPick={setFollowing} />
           </div>
           <div className="file-row">
-            <PickButton id="followers-input" label="followers.html" file={followers} accept=".html,text/html" onPick={setFollowers} />
+            <PickButton id="followers-input" label="followers.html / followers.json" file={followers} accept=".html,text/html,.json,application/json" onPick={setFollowers} />
           </div>
         </>
       )}
       {zip && (
         <button type="button" className="link-button" onClick={() => setZip(null)}>
-          העדפת שני קבצי HTML במקום? לחץ כאן
+          העדפת שני קבצים במקום ZIP? לחץ כאן
         </button>
       )}
       <button className="analyze" disabled={!canAnalyze} onClick={analyze}>

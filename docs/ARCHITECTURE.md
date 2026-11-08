@@ -6,6 +6,7 @@
 src/domain/            Pure TypeScript, no DOM or React imports
   types.ts             Shared entities (AccountEntry, FollowSnapshot, ...)
   parseExportHtml.ts   Meta export HTML -> AccountEntry[] (markup is read, never injected)
+  parseExportJson.ts   Meta export JSON (followers shards / following wrapper) -> AccountEntry[]
   lists.ts             notFollowingBack / fansOnly / mutuals
   diff.ts              Membership changes between two snapshots
   analytics.ts         Aggregate counts and ratios
@@ -22,7 +23,7 @@ Rules:
 
 ## Data flow
 
-User picks following.html + followers.html -> FileReader -> parseExportHtml ->
+User picks the export ZIP or the two export files (HTML or JSON flavor, numbered shards merged) -> bounded streaming extraction -> parse ->
 FollowSnapshot -> lists/analytics rendered. No network calls, no storage:
 state lives in memory for the session only.
 
